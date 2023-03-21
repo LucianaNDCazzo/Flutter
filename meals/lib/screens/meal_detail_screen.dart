@@ -6,14 +6,14 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final meal = ModalRoute.of(context)!.settings.arguments as Meal;
+    final meal = ModalRoute.of(context)?.settings.arguments as Meal;
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: 300,
             width: double.infinity,
             child: Image.network(
@@ -30,15 +30,28 @@ class MealDetailScreen extends StatelessWidget {
           ),
           Container(
             width: 300,
-            height: 250,
+            height: 200,
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: ListView.builder(
                 itemCount: meal.ingredients.length,
                 itemBuilder: (ctx, index) {
                   return Card(
                     color: Theme.of(context).colorScheme.secondary,
-                    child: Text(meal.ingredients[index]),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ),
+                      child: Text(
+                        meal.ingredients[index],
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
                   );
                 }),
           )

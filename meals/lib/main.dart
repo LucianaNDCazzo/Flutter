@@ -7,7 +7,7 @@ import 'package:meals/screens/meal_detail_screen.dart';
 import 'package:meals/utils/app_routes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
   HttpOverrides.global = MyHttpOverrides();
 }
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.homeRoute: (ctx) => const CategoriesScreen(),
           AppRoutes.categoryMealsRoute: (ctx) => const CategoriesMealsScreen(),
-          AppRoutes.mealDetailRoute: (ctx) => MealDetailScreen(),
+          AppRoutes.mealDetailRoute: (ctx) => const MealDetailScreen(),
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(builder: (_) {

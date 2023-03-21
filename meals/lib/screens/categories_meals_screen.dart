@@ -15,13 +15,11 @@ class CategoriesMealsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(category.title),
       ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: categoryMeals.length,
-          itemBuilder: (context, index) {
-            return MealItem(categoryMeals[index]);
-          },
-        ),
+      body: ListView.builder(
+        itemCount: categoryMeals.length,
+        itemBuilder: (ctx, index) {
+          return MealItem(categoryMeals[index]);
+        },
       ),
     );
   }
