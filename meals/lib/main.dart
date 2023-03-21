@@ -13,24 +13,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vamos cozinhar?',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
-            .copyWith(secondary: Colors.deepPurpleAccent),
-        fontFamily: 'Raleway',
-        canvasColor: Colors.white,
-        textTheme: ThemeData.light().textTheme.copyWith(
-              titleLarge: const TextStyle(
-                fontSize: 20,
-                fontFamily: 'RobotoCondensed',
+        title: 'Vamos cozinhar?',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
+              .copyWith(secondary: Colors.deepPurpleAccent),
+          fontFamily: 'Raleway',
+          canvasColor: Colors.white,
+          textTheme: ThemeData.light().textTheme.copyWith(
+                titleLarge: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'RobotoCondensed',
+                ),
               ),
-            ),
-      ),
-      routes: {
-        AppRoutes.homeRoute: (ctx) => const CategoriesScreen(),
-        AppRoutes.categoryMealsRoute: (ctx) => const CategoriesMealsScreen(),
-        AppRoutes.mealDetailRoute: (ctx) => const MealDetailScreen(),
-      },
-    );
+        ),
+        routes: {
+          AppRoutes.homeRoute: (ctx) => const CategoriesScreen(),
+          AppRoutes.categoryMealsRoute: (ctx) => const CategoriesMealsScreen(),
+          AppRoutes.mealDetailRoute: (ctx) => const MealDetailScreen(),
+        },
+        onUnknownRoute: (settings) {
+          return MaterialPageRoute(builder: (_) {
+            return const CategoriesScreen();
+          });
+        });
   }
 }
