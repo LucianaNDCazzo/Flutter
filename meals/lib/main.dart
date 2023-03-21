@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories_meals_screen.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/meal_detail_screen.dart';
 import 'package:meals/utils/app_routes.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+  HttpOverrides.global = MyHttpOverrides();
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,12 +34,21 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.homeRoute: (ctx) => const CategoriesScreen(),
           AppRoutes.categoryMealsRoute: (ctx) => const CategoriesMealsScreen(),
-          AppRoutes.mealDetailRoute: (ctx) => const MealDetailScreen(),
+          AppRoutes.mealDetailRoute: (ctx) => MealDetailScreen(),
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(builder: (_) {
             return const CategoriesScreen();
           });
         });
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
