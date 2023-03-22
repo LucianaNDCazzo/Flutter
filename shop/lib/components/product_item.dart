@@ -15,10 +15,12 @@ class ProductItem extends StatelessWidget {
           leading: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.favorite),
+            color: Theme.of(context).colorScheme.primary,
           ),
           title: Text(
             product.title,
             textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelLarge,
           ),
           trailing: IconButton(
             onPressed: () {},
