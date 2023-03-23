@@ -8,7 +8,7 @@ class CartItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 15,
         vertical: 4,
       ),
@@ -16,10 +16,14 @@ class CartItemWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
             leading: CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.primary,
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: FittedBox(
-                  child: Text('${cartItem.price}'),
+                  child: Text(
+                    '${cartItem.price}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),
