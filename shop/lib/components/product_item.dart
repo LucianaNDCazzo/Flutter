@@ -28,7 +28,7 @@ class ProductItem extends StatelessWidget {
             ),
           ),
           title: Text(
-            product.title,
+            product.name,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelLarge,
           ),
