@@ -8,6 +8,7 @@ import 'package:shop/models/product_list.dart';
 import 'package:shop/pages/cart_page.dart';
 import 'package:shop/pages/order_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
+import 'package:shop/pages/product_page.dart';
 import 'package:shop/pages/products_overview_page.dart';
 import 'package:shop/utils/app_routes.dart';
 
@@ -37,15 +38,16 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: tema.copyWith(
-          colorScheme: tema.colorScheme.copyWith(
-            primary: Colors.deepPurple,
-            secondary: Colors.deepPurpleAccent,
-            background: const Color.fromARGB(255, 176, 219, 126),
-          ),
           textTheme: tema.textTheme.copyWith(
             labelLarge:
                 const TextStyle(fontFamily: 'Lato', color: Colors.white),
           ),
+          colorScheme: tema.colorScheme
+              .copyWith(
+                primary: Colors.deepPurple,
+                secondary: Colors.deepPurpleAccent,
+              )
+              .copyWith(background: const Color.fromARGB(255, 176, 219, 126)),
         ),
         //home: const ProductsOverviewPage(),
         routes: {
@@ -53,6 +55,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.productDetailRoute: (ctx) => const ProductDetailPage(),
           AppRoutes.cartRoute: (ctx) => const CartPage(),
           AppRoutes.orderRoute: (ctx) => const OrdersPage(),
+          AppRoutes.productsRoute: (ctx) => const ProductPage(),
         },
         debugShowCheckedModeBanner: false,
       ),
