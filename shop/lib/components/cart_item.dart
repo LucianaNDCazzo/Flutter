@@ -31,7 +31,7 @@ class CartItemWidget extends StatelessWidget {
           context: context,
           builder: (ctx) => AlertDialog(
             title: const Text('Excluir'),
-            content: const Text('Deseja excluir este item?'),
+            content: const Text('Deseja excluir esse item?'),
             actions: [
               TextButton(
                 onPressed: () {
