@@ -17,58 +17,65 @@ class ProductGridItem extends StatelessWidget {
       context,
       listen: false,
     );
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: GridTile(
-        footer: GridTileBar(
-          backgroundColor: Colors.black87,
-          leading: Consumer<Product>(
-            builder: (ctx, product, _) => IconButton(
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 5.0,
+        horizontal: 5.0,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: GridTile(
+          footer: GridTileBar(
+            backgroundColor: Colors.black87,
+            leading: Consumer<Product>(
+              builder: (ctx, product, _) => IconButton(
+                onPressed: () {
+                  product.toggleFavorite();
+                },
+                icon: Icon(product.isFavorite
+                    ? Icons.favorite
+                    : Icons.favorite_border),
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+            title: Text(
+              product.name,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+            trailing: IconButton(
               onPressed: () {
-                product.toggleFavorite();
+                cart.addItem(product);
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('Produto adicionado com sucesso'),
+                    duration: const Duration(seconds: 2),
+                    action: SnackBarAction(
+                      label: 'DESFAZER',
+                      onPressed: () {
+                        cart.removeSingleItem(product.id);
+                      },
+                    ),
+                  ),
+                );
               },
-              icon: Icon(
-                  product.isFavorite ? Icons.favorite : Icons.favorite_border),
+              icon: const Icon(Icons.shopping_cart),
               color: Theme.of(context).colorScheme.secondary,
             ),
           ),
-          title: Text(
-            product.name,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          trailing: IconButton(
-            onPressed: () {
-              cart.addItem(product);
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: const Text('Produto adicionado com sucesso'),
-                  duration: const Duration(seconds: 2),
-                  action: SnackBarAction(
-                    label: 'DESFAZER',
-                    onPressed: () {
-                      cart.removeSingleItem(product.id);
-                    },
-                  ),
-                ),
+          child: GestureDetector(
+            child: Image.network(
+              product.imageUrl,
+              fit: BoxFit.cover,
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                AppRoutes.productDetailRoute,
+                arguments: product,
               );
             },
-            icon: const Icon(Icons.shopping_cart),
-            color: Theme.of(context).colorScheme.secondary,
           ),
-        ),
-        child: GestureDetector(
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              AppRoutes.productDetailRoute,
-              arguments: product,
-            );
-          },
         ),
       ),
     );

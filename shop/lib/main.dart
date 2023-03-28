@@ -40,8 +40,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: tema.copyWith(
           textTheme: tema.textTheme.copyWith(
-            labelLarge:
-                const TextStyle(fontFamily: 'Lato', color: Colors.white),
+            labelLarge: const TextStyle(
+                fontFamily: 'Lato',
+                color: Colors.white,
+                fontSize: 12,
+                overflow: TextOverflow.fade),
           ),
           colorScheme: tema.colorScheme
               .copyWith(
