@@ -21,7 +21,7 @@ class _AuthFormState extends State<AuthForm> {
 
   AuthMode _authMode = AuthMode.login;
 
-  Map<String, String> _authData = {
+  final Map<String, String> _authData = {
     'email': '',
     'password': '',
   };
