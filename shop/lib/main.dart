@@ -13,6 +13,7 @@ import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/product_form_page.dart';
 import 'package:shop/pages/product_page.dart';
 import 'package:shop/utils/app_routes.dart';
+import 'package:shop/utils/custom_route.dart';
 
 void main() {
   runApp(MyApp());
@@ -57,20 +58,24 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: tema.copyWith(
-          textTheme: tema.textTheme.copyWith(
-            labelLarge: const TextStyle(
-                fontFamily: 'Lato',
-                color: Colors.white,
-                fontSize: 12,
-                overflow: TextOverflow.fade),
-          ),
-          colorScheme: tema.colorScheme
-              .copyWith(
-                primary: Colors.deepPurple,
-                secondary: Colors.deepPurpleAccent,
-              )
-              .copyWith(background: const Color.fromARGB(255, 176, 219, 126)),
-        ),
+            textTheme: tema.textTheme.copyWith(
+              labelLarge: const TextStyle(
+                  fontFamily: 'Lato',
+                  color: Colors.white,
+                  fontSize: 12,
+                  overflow: TextOverflow.fade),
+            ),
+            colorScheme: tema.colorScheme
+                .copyWith(
+                  primary: Colors.deepPurple,
+                  secondary: Colors.deepPurpleAccent,
+                )
+                .copyWith(
+                  background: const Color.fromARGB(255, 176, 219, 126),
+                ),
+            pageTransitionsTheme: PageTransitionsTheme(builders: {
+              TargetPlatform.android: CustomPageTransitionsBuilder(),
+            })),
         //home: const ProductsOverviewPage(),
         routes: {
           AppRoutes.authOrHomeRoute: (ctx) => const AuthOrHomePage(),
