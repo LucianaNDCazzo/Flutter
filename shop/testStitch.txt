@@ -7,4 +7,25 @@ https://m.media-amazon.com/images/I/41mDtXIttcS._AC_SX425_.jpg
 json
 {-NRZ6MshO7U_9a43oZK9: {description: Pelúcia Lilo & Stitch Material: Algodão Tamanho: 20cm Excelente Qualidade Altura: 20.00 cm Largura: 14.00 cm Comprimento: 16.00 cm Peso: 105 g, imageUrl: https://m.media-amazon.com/images/I/41mDtXIttcS._AC_SX425_.jpg, isFavorite: false, name: Stitch, price: 75},
 
-luciana.d.cazzo@gmail.com
+
+
+{
+  "rules": {
+    "order":{
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": "$uid === auth.uid",
+      },
+    },
+    "userFavorite":{
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": "$uid === auth.uid",
+      },
+    },
+    "product": {
+    ".read": "auth != null",  
+    ".write": "auth != null",
+    }
+  }
+}
