@@ -11,6 +11,7 @@ class ProductList with ChangeNotifier {
   final String _token;
   final String _uid;
   List<Product> _items = [];
+
   List<Product> get items => [..._items];
   List<Product> get favoriteItems =>
       _items.where((prod) => prod.isFavorite).toList();
